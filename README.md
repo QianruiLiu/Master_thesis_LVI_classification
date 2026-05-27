@@ -602,6 +602,7 @@ cd ~/Master_thesis_LVI_classification
 ### Model-predicted LVI group
 
 * **Generate model-predicted score**
+  
   Before clinical analysis of model-predicted LVI group, you need to generate the prossibility score of independent test set predicted by model by using script `0_get_model_predicted_form.py`.
 
   Make sure you activate gigapath conda environment and step into root folder before running.
