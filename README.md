@@ -522,7 +522,7 @@ Clinical analyses were performed for:
 
 * Pathologist A-defined LVI label
 
-* model-predicted LVI group
+* Model-predicted LVI group
 
 The scripts are located in:
 ```bash
@@ -551,7 +551,114 @@ cd ~/Master_thesis_LVI_classification
   # --out-dir: Output directory
   ```
   * **Output**
+
     > Kaplan–Meier curves for RFi, DRFi, OS, and BCSS
     
     > Univariable Cox regression results for RFi, DRFi, OS, and BCSS
     
+* **descriptive statistics**
+  
+  #### Example usage:
+  ```bash
+  Rscript clinical_analysis/B_label_descriptive_statistics.R \
+        --clin-file labels_and_sheets/BMM_artera_version_3.xlsx \
+        --out-dir clinical_analysis/results/B_label_descriptive_statistics
+  # Arguments
+  # --clin-file: The clinical file containing survival information
+  # --out-dir: Output directory
+  ```
+  * **Output**
+    > Summary tabel of clinical characteristics including age, tumour size, T stage, nodal status, ER/PR status, Ki-67, and HER2 status by grounth truth LVI label.
+
+### Pathologist A-defined LVI label
+
+* **Survival analysis + descriptive statistics**
+  
+  #### Example usage:
+  ```bash
+  Rscript clinical_analysis/A_label_survival_analysis_descriptive_statistics.R \
+        --clin-file labels_and_sheets/BMM_artera_version_3.xlsx \
+        --mapping-file labels_and_sheets/slide_vs_patientid.tsv \
+        --roi-file labels_and_sheets/LVI_lable.tsv \
+        --out-dir clinical_analysis/results/A_label_survival_analysis_descriptive_statistics
+  
+  # Arguments
+  # --mapping-file: The mapping file between slide name and patient id
+  # --roi-file: The LVI label file
+  ```
+  * **Output**
+
+    > Kaplan–Meier curves for RFi, DRFi, OS, and BCSS
+    
+    > Univariable Cox regression results for RFi, DRFi, OS, and BCSS
+    
+    > Summary tabel of clinical characteristics including age, tumour size, T stage, nodal status, ER/PR status, Ki-67, and HER2 status by Pathologist A-defined LVI label.
+    
+### Model-predicted LVI group
+
+* **Generate model-predicted score**
+  Before clinical analysis of model-predicted LVI group, you need to generate the prossibility score of independent test set predicted by model by using script `0_get_model_predicted_form.py`.
+
+  Make sure you activate gigapath conda environment and step into root folder before running.
+  
+  ```bash
+  conda activate gigapath
+  
+  cd ~/Master_thesis_LVI_classification
+  ```
+  Then run the `0_get_model_predicted_form.py` script in clinical_analysis/ folder:
+  
+  #### Example usage:
+  ```bash
+  Python 0_get_model_predicted_form.py \
+        --run_dir "/mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed77" \
+        --external_tsv "/mnt/d/labels_external.tsv" \
+        --h5_root "/mnt/d/tile_encoder_h5files" \
+        --slide_patient_map "/mnt/d/slide_vs_patientid.tsv" \
+        --out_dir "/mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed77"
+  
+  # Arguments
+  # --run_dir: The output folder of independent test
+  # --external_tsv: Labels for independent test set, which can be found in labels_and_sheets/labels_independent_test.tsv
+  # --h5_root: .h5 file folder
+  # --slide_patient_map: The mapping file between slide name and patient id
+  # --out_dir: output directory for the model predicted score
+  ```
+  * **Output**
+
+    > A tabel containing model predicted score for each patient. The threshold chosen by model on early stopping set is marked in the name of file.
+    
+    The example tabel can be found in labels_and_sheets/external_predictions_selectedthr0p5865.tsv
+
+* **Survival analysis**
+  
+  #### Example usage:
+  ```bash
+  Rscript clinical_analysis/model_predicted_survival_analysis.R \
+        --pred-file labels_and_sheets/external_predictions_selectedthr0p5865.tsv \
+        --clin-file labels_and_sheets/BMM_artera_version_3.xlsx \
+        --out-dir clinical_analysis/results/model_predicted_survival_analysis
+  
+  # Arguments
+  # --pred-file: The file containing model predicted score generated in last step.
+  ```
+  * **Output**
+
+    > Kaplan–Meier curves for RFi, DRFi, OS, and BCSS
+    
+    > Univariable Cox regression results for RFi, DRFi, OS, and BCSS
+    
+* **descriptive statistics**
+  
+  #### Example usage:
+  ```bash
+  Rscript clinical_analysis/model_predicted_descriptive_statistics.R \
+        --pred-file labels_and_sheets/external_predictions_selectedthr0p5865.tsv \
+        --clin-file labels_and_sheets/BMM_artera_version_3.xlsx \
+        --out-dir clinical_analysis/results/model_predicted_descriptive_statistics
+  
+  # Arguments
+  # --pred-file: The file containing model predicted score generated in last step.
+  ```
+  * **Output**
+    > Summary tabel of clinical characteristics including age, tumour size, T stage, nodal status, ER/PR status, Ki-67, and HER2 status by model predicted LVI group.
