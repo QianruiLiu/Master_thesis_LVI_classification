@@ -118,6 +118,10 @@ test_df.to_csv("labels_independent_test.tsv", sep="\t", index=False)
 ```
 The codes should be run in gigapath environment. The paths of files should be the real path in your computer. The example divided labels used in this study can be found in **labels_and_sheets/labels_develop.tsv** and **labels_and_sheets/labels_independent_test.tsv**.
 
+### Data availability
+
+The WSI images, clinical data, and original label file used in this study are not included in this repository due to data privacy and ethical restrictions. The scripts are provided for reproducibility of the computational workflow, but users need to provide their own input data in the expected format.
+
 ## 2) WSI preprocessing
 
 The WSI preprocessing step tessellates each NDPI WSI into image tiles and saves tile-level metadata for downstream feature extraction.
