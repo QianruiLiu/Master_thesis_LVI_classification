@@ -78,3 +78,7 @@ conda activate lvi_clinical_analysis
 ## 1) Dataset structure and label
 
 This study based on 488 breast cancer H&E WSIs with slide-level LVI labels. The slides are in `.ndpi` format, each accompanied by an `.ndpa` annotation file containing pathologist-provided LVI-related annotations, such as ROI circles or pins.
+
+<p align="center">
+  <img src="dataset/figure.png" width="700">
+</p>
