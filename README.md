@@ -498,12 +498,12 @@ cd ~/Master_thesis_LVI_classification
 
 python models/gigapath/6_get_average_roc_curve_across_seeds.py \
       --json-files \
-            /mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed35/final_metrics.json \
-            /mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed42/final_metrics.json \
-            /mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed66/final_metrics.json \
-            /mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed77/final_metrics.json \
-            /mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed99/final_metrics.json \
-      --out-file /mnt/d/runs/final_external_eval/mean_roc_across_5seeds.png
+            /mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed35/final_metrics.json \
+            /mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed42/final_metrics.json \
+            /mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed66/final_metrics.json \
+            /mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed77/final_metrics.json \
+            /mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed99/final_metrics.json \
+      --out-file /mnt/d/runs/independent_test/mean_roc_across_5seeds.png
 
 # Arguments
 # --json-files: The output json files after running independent test by 5 different seeds
@@ -611,11 +611,11 @@ cd ~/Master_thesis_LVI_classification
   #### Example usage:
   ```bash
   Python 0_get_model_predicted_form.py \
-        --run_dir "/mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed77" \
-        --external_tsv "/mnt/d/labels_external.tsv" \
+        --run_dir "/mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed77" \
+        --external_tsv "/mnt/d/labels_independent_test.tsv" \
         --h5_root "/mnt/d/tile_encoder_h5files" \
         --slide_patient_map "/mnt/d/slide_vs_patientid.tsv" \
-        --out_dir "/mnt/d/runs/final_external_eval/lr3e-3_wd1e-2_k512_seed77"
+        --out_dir "/mnt/d/runs/independent_test/lr3e-3_wd1e-2_k512_seed77"
   
   # Arguments
   # --run_dir: The output folder of independent test
