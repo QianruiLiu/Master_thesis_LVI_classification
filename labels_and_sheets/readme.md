@@ -1,0 +1,1 @@
+Due to patient confidentiality and data protection regulations, the clinical data and slide-level labels used in this study are not publicly available. Example input files with synthetic data are provided to illustrate the required format for running the analysis scripts.
