@@ -225,6 +225,7 @@ python models/gigapath/2_tileencoder_toh5.py \
   # OUT_DIR: Output directory for all generated figures
   ```
   * **Output**
+    
     For each input slide, the script writes:
 
     > <slide_id>_roi.png (Foreground ROI crop image)
