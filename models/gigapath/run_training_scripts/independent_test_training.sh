@@ -7,7 +7,8 @@ set -euo pipefail
 
 SLIDES_DIR="/mnt/d/BMM_LVI"
 H5_ROOT="/mnt/d/tile_encoder_h5files"
-LABELS_TSV="/mnt/d/labels_train.tsv"  
+DEVELOP_TSV="/mnt/d/labels_train.tsv"
+EXTERNAL_TSV="/mnt/d/labels_external.tsv"
 
 BASE_OUT="/mnt/d/runs/final_external_eval"
 
@@ -17,8 +18,8 @@ OUT_DIR="${BASE_OUT}/lr3e-3_wd1e-2_k512_seed77"
 python 5_final_independent_test.py \
   --slides_dir "${SLIDES_DIR}" \
   --h5_root "${H5_ROOT}" \
-  --develop_tsv "/mnt/d/labels_train.tsv" \
-  --external_tsv "/mnt/d/labels_external.tsv" \
+  --develop_tsv "${DEVELOP_TSV}" \
+  --external_tsv "${EXTERNAL_TSV}" \
   --out_dir "${OUT_DIR}" \
   --val_frac 0.2 \
   --k_max 512 \
