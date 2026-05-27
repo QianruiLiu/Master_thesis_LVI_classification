@@ -116,4 +116,4 @@ dev_df, test_df = train_test_split(
 dev_df.to_csv("labels_development.tsv", sep="\t", index=False)
 test_df.to_csv("labels_independent_test.tsv", sep="\t", index=False)
 ```
-The codes should be run in gigapath environment. The paths of files should be the real path in your computer. The example divided labels can be found in **labels_and_sheets/labels_develop.tsv** and **labels_and_sheets/labels_independent_test.tsv**.
+The codes should be run in gigapath environment. The paths of files should be the real path in your computer. The example divided labels used in this study can be found in **labels_and_sheets/labels_develop.tsv** and **labels_and_sheets/labels_independent_test.tsv**.
