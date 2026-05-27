@@ -1,1 +1,1 @@
-**Due to patient confidentiality and data protection regulations, the clinical data (`BMM_artera_version_3.xlsx`described in readme of the project) and original LVI label (`LVI_lable.tsv``described in readme of the project) used in this study are not publicly available.**
+**Due to patient confidentiality and data protection regulations, the clinical data (`BMM_artera_version_3.xlsx`described in readme of the project) and original LVI label (`LVI_lable.tsv`described in readme of the project) used in this study are not publicly available.**
