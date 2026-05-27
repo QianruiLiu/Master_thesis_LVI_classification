@@ -77,8 +77,43 @@ conda activate lvi_clinical_analysis
 
 ## 1) Dataset structure and label
 
+### Dataset overview of WSIs
 This study based on 488 breast cancer H&E WSIs with slide-level LVI labels. The slides are in `.ndpi` format, each accompanied by an `.ndpa` annotation file containing pathologist-provided LVI-related annotations, such as ROI circles or pins.
+
+The figure shows an example of the slides with ROI circles indicating LVI area：
 
 <p align="center">
   <img src="dataset/figure.png" width="700">
 </p>
+
+### Slide-level LVI labels
+* **Pathologist B's slide-level LVI labels**were used as the main ground-truth labels for model training and evaluation.
+
+* **Pathologist A's LVI-positive slides with ROI circle annotations**were used only for ROI-guided sampling during training and for qualitative model interpretation.
+
+### Stratified dataset splitting
+Dataset splitting was stratified by the main slide-level LVI ground-truth label, which was divided into a development set and an independent test set at a 2:1 ratio. This can be done by the codes below:
+
+```bash
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+# Read file
+df = pd.read_csv("LVI_lable.tsv", sep="\t")
+
+# Remove rows without LVI label
+df = df.dropna(subset=["LVI"])
+
+# Stratified split by LVI, 2:1 = development : independent test
+dev_df, test_df = train_test_split(
+    df,
+    test_size=1/3,
+    stratify=df["LVI"],
+    random_state=42
+)
+
+# Save files
+dev_df.to_csv("labels_development.tsv", sep="\t", index=False)
+test_df.to_csv("labels_independent_test.tsv", sep="\t", index=False)
+```
+The codes should be run in gigapath environment. The paths of files should be the real path in your computer. The example divided labels can be found in **labels_and_sheets/labels_develop.tsv** and **labels_and_sheets/labels_independent_test.tsv**.
