@@ -536,7 +536,7 @@ conda activate lvi_clinical_analysis #The scripst must be run into lvi_clinical_
 cd ~/Master_thesis_LVI_classification
 ```
 
-### Ground truth label analysis
+### Ground truth label
 
 * **Survival analysis**
   
